@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ro" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Finalizare comandă — Aroma Land Shop</title>
+<meta name="description" content="Finalizează comanda într-un singur ecran. Fără cont obligatoriu.">
+<meta name="theme-color" content="#2f5d4e">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text y='19' font-size='19'>🌿</text></svg>">
+<link rel="stylesheet" href="assets/css/main.css">
+<script>
+  (function(){try{var m=localStorage.getItem('al.theme')||'auto';
+  var d=m==='dark'||(m==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches);
+  document.documentElement.setAttribute('data-theme',d?'dark':'light');}catch(e){}})();
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Sari la conținut</a>
+
+<!-- Deliberately stripped header: at checkout, navigation is a leak. -->
+<header class="header">
+  <div class="wrap header-inner">
+    <a class="logo" href="index.html">
+      <span class="mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c0-8 5-13 16-14 0 11-5 15-12 15H4z"/><path d="M9 16c1.5-4 4-6.5 7-8"/></svg></span>
+      Aroma Land <span class="logo-sub">shop</span>
+    </a>
+    <div class="header-actions">
+      <span class="co-trust" style="margin-right:6px">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        <span>Comandă securizată</span>
+      </span>
+      <button class="icon-btn" data-theme-toggle aria-label="Schimbă tema închis/deschis"></button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+  <div id="co-empty" hidden class="empty-state">
+    <h3>Coșul este gol</h3>
+    <p>Adaugă un produs înainte de a finaliza comanda.</p>
+    <a class="btn btn-primary btn-lg" href="catalog.html">Vezi produsele</a>
+  </div>
+
+  <div id="co-done" hidden></div>
+
+  <div id="co-main" hidden>
+    <div style="padding-block:clamp(20px,3vw,32px) 20px">
+      <h1>Finalizează comanda</h1>
+      <p class="muted" style="margin-top:8px">
+        Un singur ecran, fără cont. Durează sub un minut.
+      </p>
+    </div>
+
+    <form class="checkout-layout" id="co-form" novalidate>
+      <div>
+        <!-- 1. Contact -->
+        <section class="co-block">
+          <h2><span class="co-step">1</span> Date de contact</h2>
+          <div class="grid-2">
+            <div class="field">
+              <label class="label" for="email">Email <span aria-hidden="true">*</span></label>
+              <input class="input" type="email" id="email" name="email" required
+                autocomplete="email" inputmode="email" placeholder="nume@exemplu.ro">
+              <span class="field-error" data-error-for="email">Introdu o adresă de email validă.</span>
+            </div>
+            <div class="field">
+              <label class="label" for="phone">Telefon <span aria-hidden="true">*</span></label>
+              <input class="input" type="tel" id="phone" name="phone" required
+                autocomplete="tel" inputmode="tel" placeholder="07XX XXX XXX">
+              <span class="field-error" data-error-for="phone">Introdu un număr de telefon valid (10 cifre).</span>
+            </div>
+          </div>
+          <p class="tiny muted" style="margin-top:10px">
+            Le folosim doar pentru confirmarea comenzii și livrare.
+          </p>
+        </section>
+
+        <!-- 2. Delivery -->
+        <section class="co-block">
+          <h2><span class="co-step">2</span> Livrare</h2>
+          <div class="opt-list" role="radiogroup" aria-label="Metodă de livrare">
+            <label class="opt">
+              <input type="radio" name="delivery" value="courier" checked>
+              <span class="dot" aria-hidden="true"></span>
+              <span>
+                <span class="opt-title">Curier rapid</span>
+                <span class="opt-sub">Livrare în 24–48h lucrătoare</span>
+              </span>
+              <span class="opt-price" id="courier-price">—</span>
+            </label>
+            <label class="opt">
+              <input type="radio" name="delivery" value="pickup">
+              <span class="dot" aria-hidden="true"></span>
+              <span>
+                <span class="opt-title">Ridicare personală</span>
+                <span class="opt-sub">Din magazin, în aceeași zi</span>
+              </span>
+              <span class="opt-price">Gratuit</span>
+            </label>
+          </div>
+
+          <div id="addr-fields" style="margin-top:18px">
+            <div class="field">
+              <label class="label" for="name">Nume și prenume <span aria-hidden="true">*</span></label>
+              <input class="input" type="text" id="name" name="name" required autocomplete="name">
+              <span class="field-error" data-error-for="name">Completează numele destinatarului.</span>
+            </div>
+            <div class="grid-2">
+              <div class="field">
+                <label class="label" for="county">Județ <span aria-hidden="true">*</span></label>
+                <select class="select" id="county" name="county" required autocomplete="address-level1">
+                  <option value="">Alege județul</option>
+                </select>
+                <span class="field-error" data-error-for="county">Alege județul.</span>
+              </div>
+              <div class="field">
+                <label class="label" for="city">Localitate <span aria-hidden="true">*</span></label>
+                <input class="input" type="text" id="city" name="city" required autocomplete="address-level2">
+                <span class="field-error" data-error-for="city">Completează localitatea.</span>
+              </div>
+            </div>
+            <div class="field">
+              <label class="label" for="street">Adresă (stradă, număr, bloc) <span aria-hidden="true">*</span></label>
+              <input class="input" type="text" id="street" name="street" required autocomplete="street-address">
+              <span class="field-error" data-error-for="street">Completează adresa de livrare.</span>
+            </div>
+          </div>
+
+          <div id="pickup-info" hidden style="margin-top:18px">
+            <div class="field">
+              <label class="label" for="pickup-name">Nume și prenume <span aria-hidden="true">*</span></label>
+              <input class="input" type="text" id="pickup-name" name="pickupName" autocomplete="name">
+              <span class="field-error" data-error-for="pickup-name">Completează numele.</span>
+            </div>
+            <p class="tiny muted" style="margin-top:10px">
+              Te anunțăm prin SMS când comanda e gata de ridicat. Adresa magazinului
+              și programul sunt trimise în emailul de confirmare.
+            </p>
+          </div>
+        </section>
+
+        <!-- 3. Payment -->
+        <section class="co-block">
+          <h2><span class="co-step">3</span> Plată</h2>
+          <div class="opt-list" role="radiogroup" aria-label="Metodă de plată">
+            <label class="opt">
+              <input type="radio" name="payment" value="card" checked>
+              <span class="dot" aria-hidden="true"></span>
+              <span>
+                <span class="opt-title">Card bancar</span>
+                <span class="opt-sub">Visa / Mastercard, procesare securizată</span>
+              </span>
+            </label>
+            <label class="opt">
+              <input type="radio" name="payment" value="cod">
+              <span class="dot" aria-hidden="true"></span>
+              <span>
+                <span class="opt-title">Ramburs la curier</span>
+                <span class="opt-sub">Plătești când primești coletul</span>
+              </span>
+            </label>
+          </div>
+
+          <details style="margin-top:16px">
+            <summary class="small muted" style="cursor:pointer">Opțiuni suplimentare</summary>
+            <div style="margin-top:14px">
+              <label class="row" style="align-items:flex-start;gap:10px">
+                <input type="checkbox" id="company" name="company" style="margin-top:4px">
+                <span class="small">Vreau factură pe firmă</span>
+              </label>
+              <div id="company-fields" hidden style="margin-top:12px">
+                <div class="grid-2">
+                  <div class="field">
+                    <label class="label" for="co-name">Denumire firmă</label>
+                    <input class="input" type="text" id="co-name" name="companyName">
+                  </div>
+                  <div class="field">
+                    <label class="label" for="co-cui">CUI</label>
+                    <input class="input" type="text" id="co-cui" name="companyCui">
+                  </div>
+                </div>
+              </div>
+              <div class="field" style="margin-top:12px">
+                <label class="label" for="notes">Observații pentru curier</label>
+                <textarea class="textarea" id="notes" name="notes"
+                  placeholder="Ex. sunați înainte, interfon 21"></textarea>
+              </div>
+            </div>
+          </details>
+        </section>
+      </div>
+
+      <!-- Summary -->
+      <aside class="summary" aria-label="Sumar comandă">
+        <div class="summary-head row-between">
+          <h2 style="font-size:1.1rem">Comanda ta</h2>
+          <a class="small" href="cart.html" style="color:var(--brand);font-weight:600">Editează</a>
+        </div>
+        <div class="summary-lines" id="co-lines"></div>
+        <div class="summary-totals" id="co-totals"></div>
+
+        <div style="padding:0 18px 18px">
+          <div class="co-actions">
+            <label class="row" style="align-items:flex-start;gap:10px">
+              <input type="checkbox" id="terms" name="terms" required style="margin-top:4px">
+              <span class="tiny">Sunt de acord cu
+                <a href="info.html#termeni" style="text-decoration:underline">termenii și condițiile</a>
+                și cu <a href="info.html#confidentialitate" style="text-decoration:underline">prelucrarea datelor</a>.</span>
+            </label>
+            <span class="field-error" data-error-for="terms" style="margin-top:-4px">
+              Trebuie să accepți termenii pentru a comanda.
+            </span>
+            <button class="btn btn-primary btn-lg btn-block" type="submit" id="place-order">
+              Trimite comanda · <span id="btn-total">—</span>
+            </button>
+            <p class="co-trust">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+              Plată securizată · Retur în 30 de zile
+            </p>
+          </div>
+        </div>
+      </aside>
+    </form>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-bottom" style="margin-top:0;border-top:0;padding-top:0">
+      <span>© <span id="year">2026</span> Electric Masters SRL</span>
+      <div class="pay-methods"><span>Visa</span><span>Mastercard</span><span>Ramburs</span></div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/art.js"></script>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/checkout.js"></script>
+</body>
+</html>

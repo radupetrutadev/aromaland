@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ro" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Toate produsele — Aroma Land Shop</title>
+<meta name="description" content="Uleiuri esențiale și parfumate, difuzoare cu ultrasunete, lumânări, reed diffusere, seturi cadou. Filtrează instant și adaugă în coș dintr-un singur clic.">
+<meta name="theme-color" content="#2f5d4e">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text y='19' font-size='19'>🌿</text></svg>">
+<link rel="stylesheet" href="assets/css/main.css">
+<script>
+  (function(){try{var m=localStorage.getItem('al.theme')||'auto';
+  var d=m==='dark'||(m==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches);
+  document.documentElement.setAttribute('data-theme',d?'dark':'light');}catch(e){}})();
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Sari la conținut</a>
+
+<div class="promo">
+  <span><strong>Transport gratuit</strong> peste 250 lei</span>
+  <span class="promo-extra"><span class="sep">•</span> Livrare în 24–48h <span class="sep">•</span> Retur în 30 de zile</span>
+</div>
+
+<header class="header">
+  <div class="wrap header-inner">
+    <button class="icon-btn menu-btn" data-open-menu aria-label="Deschide meniul">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <a class="logo" href="index.html">
+      <span class="mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c0-8 5-13 16-14 0 11-5 15-12 15H4z"/><path d="M9 16c1.5-4 4-6.5 7-8"/></svg></span>
+      Aroma Land <span class="logo-sub">shop</span>
+    </a>
+    <nav class="nav" aria-label="Categorii principale">
+      <a href="catalog.html?cat=uleiuri-esentiale">Uleiuri</a>
+      <a href="catalog.html?cat=difuzoare">Difuzoare</a>
+      <a href="catalog.html?cat=betisoare-reed">Bețișoare</a>
+      <a href="catalog.html?cat=lumanari">Lumânări</a>
+      <a href="catalog.html?cat=seturi-cadou">Cadouri</a>
+      <a href="catalog.html">Toate</a>
+    </nav>
+    <div class="header-actions">
+      <button class="search-trigger" data-open-search aria-label="Caută produse">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span>Caută produse…</span><kbd>/</kbd>
+      </button>
+      <button class="icon-btn" data-theme-toggle aria-label="Schimbă tema închis/deschis"></button>
+      <a class="icon-btn" href="cart.html" data-open-cart aria-label="Deschide coșul">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.55L21 8H6"/><circle cx="10" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg>
+        <span class="cart-count" data-cart-count>0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+  <nav class="breadcrumb" aria-label="Navigare secundară">
+    <a href="index.html">Acasă</a>
+    <span aria-hidden="true">/</span>
+    <span id="crumb">Toate produsele</span>
+  </nav>
+
+  <header style="margin-bottom:clamp(20px,3vw,32px)">
+    <h1 id="cat-title">Toate produsele</h1>
+    <p class="muted" id="cat-blurb" style="margin-top:8px;max-width:60ch">
+      Filtrează, sortează și adaugă în coș fără să părăsești pagina.
+    </p>
+  </header>
+
+  <div class="catalog-layout">
+
+    <aside class="filters" id="filters" aria-label="Filtre">
+      <div class="row-between filters-close">
+        <h2 style="font-size:1.15rem">Filtre</h2>
+        <button class="icon-btn" data-filters-close aria-label="Închide filtrele">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+
+      <div class="filter-group">
+        <p class="eyebrow">Categorie</p>
+        <div class="filter-list" id="f-cat"></div>
+      </div>
+
+      <div class="filter-group">
+        <p class="eyebrow">Preț</p>
+        <div class="filter-list" id="f-price"></div>
+      </div>
+
+      <div class="filter-group">
+        <p class="eyebrow">Disponibilitate</p>
+        <div class="filter-list" id="f-stock"></div>
+      </div>
+
+      <button class="btn btn-ghost btn-block btn-sm" id="clear-all">Șterge toate filtrele</button>
+
+      <div class="filters-apply">
+        <button class="btn btn-primary btn-block btn-lg" data-filters-close>
+          Vezi <span id="apply-count">0</span> produse
+        </button>
+      </div>
+    </aside>
+
+    <div>
+      <div class="catalog-bar">
+        <span class="count" id="result-count">—</span>
+        <span class="spacer"></span>
+        <button class="btn btn-ghost btn-sm filters-btn" id="open-filters" aria-expanded="false" aria-controls="filters">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+          Filtre
+        </button>
+        <label class="sr-only" for="sort">Sortează</label>
+        <select class="select" id="sort" style="min-height:38px;padding-block:6px;width:auto">
+          <option value="popular">Recomandate</option>
+          <option value="price-asc">Preț crescător</option>
+          <option value="price-desc">Preț descrescător</option>
+          <option value="rating">Cele mai apreciate</option>
+          <option value="discount">Reduceri</option>
+        </select>
+      </div>
+
+      <div class="active-filters" id="active-filters"></div>
+
+      <div class="grid" id="results"></div>
+
+      <div id="no-results" hidden class="empty-state">
+        <h3>Niciun produs pentru filtrele alese</h3>
+        <p>Încearcă să elimini un filtru sau caută altceva.</p>
+        <button class="btn btn-primary" id="reset-from-empty">Șterge filtrele</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="index.html">
+          <span class="mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c0-8 5-13 16-14 0 11-5 15-12 15H4z"/><path d="M9 16c1.5-4 4-6.5 7-8"/></svg></span>
+          Aroma Land <span class="logo-sub">shop</span>
+        </a>
+        <p class="f-about">Aromaterapie, parfumare de cameră și decorațiuni, direct de la producător.</p>
+      </div>
+      <div>
+        <h3>Cumpără</h3>
+        <ul class="reset">
+          <li><a href="catalog.html?cat=uleiuri-esentiale">Uleiuri esențiale</a></li>
+          <li><a href="catalog.html?cat=difuzoare">Difuzoare</a></li>
+          <li><a href="catalog.html?cat=betisoare-reed">Bețișoare & Reed</a></li>
+          <li><a href="catalog.html?cat=lumanari">Lumânări parfumate</a></li>
+          <li><a href="catalog.html?cat=seturi-cadou">Seturi cadou</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Ajutor</h3>
+        <ul class="reset">
+          <li><a href="info.html#cum-cumpar">Cum cumpăr</a></li>
+          <li><a href="info.html#livrare">Livrare și retur</a></li>
+          <li><a href="info.html#plata">Metode de plată</a></li>
+          <li><a href="info.html#faq">Întrebări frecvente</a></li>
+          <li><a href="info.html#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Companie</h3>
+        <ul class="reset">
+          <li><a href="info.html#despre">Despre noi</a></li>
+          <li><a href="https://www.aromaland.ro/" rel="noopener">Aroma Land Business</a></li>
+          <li><a href="info.html#termeni">Termeni și condiții</a></li>
+          <li><a href="info.html#confidentialitate">Confidențialitate</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> Electric Masters SRL. Toate drepturile rezervate.</span>
+      <div class="pay-methods"><span>Visa</span><span>Mastercard</span><span>Ramburs</span></div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/art.js"></script>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/catalog.js"></script>
+</body>
+</html>
